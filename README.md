@@ -4,5 +4,6 @@ El proyecto consistirá en un proyecto pequeño de tienda de ropa online emplean
 Este proyecto contará con login, productos organizados por categorías y un catálogo. Como componentes se implementará una barra de búsqueda y la adición de shopcart con la posibilidad de elegir el método de pago.
 
 El desarrolo empleara:
+
 -Django
 -Mysql
