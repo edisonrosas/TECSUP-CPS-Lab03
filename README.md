@@ -6,4 +6,5 @@ Este proyecto contará con login, productos organizados por categorías y un cat
 El desarrolo empleara:
 
 -Django
+
 -Mysql
