@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'TiendaVirtual.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_a795be_admin',
+        'USER' : 'a795be_admin',
+        'PASSWORD' : '',
+        'HOST' : 'mysql5030.site4now.net',
+        'PORT' : 3306,
     }
 }
 
