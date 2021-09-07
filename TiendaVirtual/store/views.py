@@ -32,3 +32,16 @@ def register(request):
             
 
     return render(request, 'store/register.html')
+
+# FORM LOGIN
+
+def login(request):
+    if request.method == 'POST':
+        try:
+            detalleUser = user.objects.get(Correo=request.POST['correo'], clave=request.POST['password'])
+            print("Usuario=", detalleUser)
+            request.session['Correo']=detalleUser.Correo
+            return redirect('store:index')
+        except user.DoesNotExist as e:
+            messages.success(request, 'Correo Electrónico o Password no es correcto..!')
+    return render(request, 'store/login.html')
