@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'db_a795be_admin',
         'USER' : 'a795be_admin',
-        'PASSWORD' : '',
+        'PASSWORD' : 'admin123',
         'HOST' : 'mysql5030.site4now.net',
         'PORT' : 3306,
     }
