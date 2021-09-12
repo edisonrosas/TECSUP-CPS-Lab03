@@ -1,13 +1,34 @@
-from django.shortcuts import redirect, render
-from store.models import user
+from django.shortcuts import get_object_or_404, redirect, render
+from .models import user, product
 from django.contrib import messages
-
+from django.urls import reverse
+from django.http import HttpResponse,HttpResponseRedirect 
 # Create your views here.
-def index(request):
-    return render(request, 'store/index.html')
 
-def product(request):
-    return render(request, 'store/product.html')
+def index(request):
+    
+    productos=product.objects.all()[:8] #se cargarán solo 8 datos hasta que sea viable la paginación
+    products={'productos':productos}
+    return render(request, 'store/index.html',products)
+
+def producto(request):
+#PRODUCTO SELECCIONADO
+
+
+
+
+
+    #categoria -> tiene el valor de la categoria del producto seleccionado
+    category=''
+
+#RELATED PRODUCTS
+
+    #Se deben filtrar según la categoria del producto seleccionado actualmente
+    products_related=product.objects.filter(categoria=category)[:8]
+    dictproducts={'products_related':products_related}
+
+    #se envian los products_related junto con los del product seleccionado
+    return render(request, 'store/product.html', dictproducts)
 
 def about(request):
     return render(request, 'store/about.html')
