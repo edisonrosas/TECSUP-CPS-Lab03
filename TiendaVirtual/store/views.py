@@ -2,21 +2,18 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .models import user, product
 from django.contrib import messages
 from django.urls import reverse
-from django.http import HttpResponse,HttpResponseRedirect 
+from django.http import HttpResponse,HttpResponseRedirect
 # Create your views here.
 
 def index(request):
     
-    productos=product.objects.all()[:8] #se cargarán solo 8 datos hasta que sea viable la paginación
-    products={'productos':productos}
-    return render(request, 'store/index.html',products)
+    productos = product.objects.all() #se cargarán solo 8 datos hasta que sea viable la paginación
+    context = {'productos':productos}
+    return render(request, 'store/index.html',context)
+
 
 def producto(request):
 #PRODUCTO SELECCIONADO
-
-
-
-
 
     #categoria -> tiene el valor de la categoria del producto seleccionado
     category=''
