@@ -1,6 +1,10 @@
+from django.core import paginator
+from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import user, product
 from django.contrib import messages
+from django.http import Http404
+from django.core.paginator import Page, Paginator
 from django.urls import reverse
 from django.http import HttpResponse,HttpResponseRedirect
 # Create your views here.
@@ -8,7 +12,22 @@ from django.http import HttpResponse,HttpResponseRedirect
 def index(request):
     
     productos = product.objects.all() #se cargarán solo 8 datos hasta que sea viable la paginación
-    context = {'productos':productos}
+    pagina = request.GET.get('page', 1) 
+    
+
+    try:
+        paginator = Paginator(productos, 3)
+        productos = paginator.page(pagina)
+
+    except:
+        raise Http404
+
+    context = {
+        'productos':productos,
+        'paginator':paginator,
+    }
+
+
     return render(request, 'store/index.html',context)
 
 
