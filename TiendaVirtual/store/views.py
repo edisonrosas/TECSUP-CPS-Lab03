@@ -9,6 +9,12 @@ from django.urls import reverse
 from django.http import HttpResponse,HttpResponseRedirect
 # Create your views here.
 
+def producto(request, product_id):
+    p = product.objects.get(id=product_id)
+    a = product.objects.filter(categoria=p.categoria)[:4]
+    context = {'producto' : p, 'productos' : a}
+    return render(request, 'store/product.html',context)
+
 def index(request):
     
     productos = product.objects.all() #se cargarán solo 8 datos hasta que sea viable la paginación
@@ -16,7 +22,7 @@ def index(request):
     
 
     try:
-        paginator = Paginator(productos, 3)
+        paginator = Paginator(productos, 4)
         productos = paginator.page(pagina)
 
     except:
@@ -31,7 +37,7 @@ def index(request):
     return render(request, 'store/index.html',context)
 
 
-def producto(request):
+def productos(request):
 #PRODUCTO SELECCIONADO
 
     #categoria -> tiene el valor de la categoria del producto seleccionado
